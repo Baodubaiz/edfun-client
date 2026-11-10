@@ -1,12 +1,12 @@
 extends Node
-## Gamora SDK: the ONLY hub API a game may use.
+## Edfun SDK: the ONLY hub API a game may use.
 ##
-## Register as autoload "GamoraSdk" in both the hub and every game project.
+## Register as autoload "EdfunSdk" in both the hub and every game project.
 ## - Standalone (game project run on its own): uses safe defaults, exit quits the app.
 ## - In hub: the hub calls attach(bridge) at startup and calls are forwarded to it.
 ##
-## The source of truth is gamora-client/addons/gamora_sdk; game repos get a copy
-## via gamora-client/tools/sync_games.ps1. Do not edit the copies.
+## The source of truth is edfun-client/addons/edfun_sdk; game repos get a copy
+## via edfun-client/tools/sync_games.ps1. Do not edit the copies.
 
 ## Bump when the API below changes in a breaking way. Games declare the version they need in game.json.
 const SDK_VERSION := 1

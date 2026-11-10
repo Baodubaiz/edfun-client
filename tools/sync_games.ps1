@@ -3,23 +3,23 @@
   Syncs games into the hub and the SDK into games.
 
 .DESCRIPTION
-  1. Copies gamora-client/addons/gamora_sdk  ->  <game repo>/client/addons/gamora_sdk   (hub is the SDK source of truth)
-  2. Copies <game repo>/client/games/<id>     ->  gamora-client/games/<id>                (game repos are the game source of truth)
+  1. Copies edfun-client/addons/edfun_sdk  ->  <game repo>/client/addons/edfun_sdk   (hub is the SDK source of truth)
+  2. Copies <game repo>/client/games/<id>     ->  edfun-client/games/<id>                (game repos are the game source of truth)
 
-  Run it before testing or building the hub. Never edit gamora-client/games/* directly.
+  Run it before testing or building the hub. Never edit edfun-client/games/* directly.
 
 .EXAMPLE
   powershell -ExecutionPolicy Bypass -File tools/sync_games.ps1
-  powershell -ExecutionPolicy Bypass -File tools/sync_games.ps1 -GamesRoot D:\work\Gamora-Games
+  powershell -ExecutionPolicy Bypass -File tools/sync_games.ps1 -GamesRoot D:\work\Edfun-Games
 #>
 param(
-    [string]$GamesRoot = (Join-Path $PSScriptRoot "..\..\..\Gamora-Games")
+    [string]$GamesRoot = (Join-Path $PSScriptRoot "..\..\..\Edfun-Games")
 )
 
 $ErrorActionPreference = "Stop"
 
 $hubRoot  = Resolve-Path (Join-Path $PSScriptRoot "..")
-$hubSdk   = Join-Path $hubRoot "addons\gamora_sdk"
+$hubSdk   = Join-Path $hubRoot "addons\edfun_sdk"
 $hubGames = Join-Path $hubRoot "games"
 
 if (-not (Test-Path $GamesRoot)) { throw "Games folder not found: $GamesRoot" }
@@ -33,7 +33,7 @@ foreach ($repo in Get-ChildItem $GamesRoot -Directory) {
     if (-not (Test-Path (Join-Path $client "project.godot")) -or -not (Test-Path $gamesDir)) { continue }
 
     # 1. SDK: hub -> game repo
-    $gameSdk = Join-Path $client "addons\gamora_sdk"
+    $gameSdk = Join-Path $client "addons\edfun_sdk"
     if (Test-Path $gameSdk) { Remove-Item $gameSdk -Recurse -Force -Confirm:$false }
     New-Item -ItemType Directory -Force (Split-Path $gameSdk) | Out-Null
     Copy-Item $hubSdk $gameSdk -Recurse

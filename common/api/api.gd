@@ -1,5 +1,5 @@
 extends Node
-## HTTP client for the Gamora backend.
+## HTTP client for the Edfun backend.
 ## Every call returns: { ok: bool, status: int, data: Variant, error: String }
 
 

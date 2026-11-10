@@ -4,7 +4,7 @@ extends Node
 const REQUEST_TIMEOUT := 15.0
 
 ## TODO: set the real API domain before releasing.
-const PROD_API_URL := "https://api.gamora.example"
+const PROD_API_URL := "https://api.edfun.example"
 
 ## Desktop editor/debug run: BE on the same machine.
 const DEV_DESKTOP_API_URL := "http://localhost:5236"

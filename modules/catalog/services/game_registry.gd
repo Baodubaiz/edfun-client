@@ -24,8 +24,8 @@ func reload() -> void:
 		if game["id"] != folder:
 			push_warning("GameRegistry: '%s' has id '%s' (must match folder name), skipped." % [folder, game["id"]])
 			continue
-		if int(game["sdk_version"]) > GamoraSdk.SDK_VERSION:
-			push_warning("GameRegistry: '%s' needs SDK v%s, hub has v%d, skipped." % [folder, game["sdk_version"], GamoraSdk.SDK_VERSION])
+		if int(game["sdk_version"]) > EdfunSdk.SDK_VERSION:
+			push_warning("GameRegistry: '%s' needs SDK v%s, hub has v%d, skipped." % [folder, game["sdk_version"], EdfunSdk.SDK_VERSION])
 			continue
 		games.append(game)
 

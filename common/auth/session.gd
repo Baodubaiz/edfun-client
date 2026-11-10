@@ -64,7 +64,7 @@ func _load() -> void:
 ## Obfuscation only (keeps the token out of plain text). Use Android Keystore for real protection.
 func _key() -> String:
 	var device_id := OS.get_unique_id()
-	return "gamora-session-" + (device_id if device_id != "" else "local")
+	return "edfun-session-" + (device_id if device_id != "" else "local")
 
 
 ## Backend sends e.g. "2026-11-10T09:00:00.1234567+00:00" (always UTC).

@@ -2,6 +2,6 @@
 .godot/
 /android/
 
-# Games are synced from their own repos by tools/sync_games.ps1 (source of truth = Gamora-Games/*)
+# Games are synced from their own repos by tools/sync_games.ps1 (source of truth = Edfun-Games/*)
 /games/*
 !/games/.gitkeep

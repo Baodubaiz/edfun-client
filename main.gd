@@ -11,8 +11,8 @@ var _toast_tween: Tween
 
 
 func _ready() -> void:
-	if not GamoraSdk.is_in_hub():
-		GamoraSdk.attach(HubBridge.new())
+	if not EdfunSdk.is_in_hub():
+		EdfunSdk.attach(HubBridge.new())
 	Router.attach_host(self)
 
 
