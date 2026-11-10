@@ -10,14 +10,30 @@ config_version=5
 
 [application]
 
-config/name="gamora-client"
+config/name="Gamora"
+run/main_scene="res://main.tscn"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
+config/quit_on_go_back=false
+
+[autoload]
+
+Config="*res://common/config/config.gd"
+GamoraSdk="*res://addons/gamora_sdk/gamora_sdk.gd"
+Api="*res://common/api/api.gd"
+Session="*res://common/auth/session.gd"
+GameRegistry="*res://modules/catalog/services/game_registry.gd"
+Router="*res://common/navigation/router.gd"
 
 [display]
 
+window/size/viewport_width=720
+window/size/viewport_height=1280
+window/size/window_width_override=405
+window/size/window_height_override=720
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+window/handheld/orientation=1
 
 [physics]
 
