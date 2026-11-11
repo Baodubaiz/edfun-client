@@ -23,7 +23,7 @@ func _on_submit() -> void:
 	if not res.ok:
 		_error.text = res.error
 		return
-	Router.reset_to("catalog")
+	Router.reset_to(Router.HOME)
 
 
 func _set_busy(busy: bool) -> void:

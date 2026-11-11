@@ -1,43 +1,54 @@
 extends Node
-## Navigation: hub screens (inside main.tscn) and entering/leaving games.
+## Navigation: hub screens (inside main.tscn) with params, and entering/leaving games.
+##
+## A screen that needs params defines `func setup(params: Dictionary)`. It is called BEFORE the
+## screen enters the tree, so store the params there and use them in _ready().
 
 const MAIN_SCENE := "res://main.tscn"
+const HOME := "home"
 const SCREENS := {
 	"login": "res://modules/users/ui/login_screen.tscn",
 	"register": "res://modules/users/ui/register_screen.tscn",
-	"catalog": "res://modules/catalog/ui/catalog_screen.tscn",
+	"home": "res://modules/catalog/ui/home_screen.tscn",
+	"game_detail": "res://modules/catalog/ui/game_detail_screen.tscn",
+	"explore": "res://modules/levels/ui/explore_screen.tscn",
+	"profile": "res://modules/users/ui/profile_screen.tscn",
+	"settings": "res://modules/settings/ui/settings_screen.tscn",
+	"game_placeholder": "res://modules/play/ui/game_placeholder_screen.tscn",
 }
+## Screens shown with the bottom tab bar.
+const TABS := ["home", "explore", "profile", "settings"]
 
 var current_game: Dictionary = {}
 
 var _host: Node = null ## main.gd, set by attach_host()
-var _stack: Array[String] = []
+var _stack: Array[Dictionary] = [] ## [{ screen: String, params: Dictionary }]
 
 
 func _ready() -> void:
 	Session.logged_out.connect(func() -> void:
 		if _host != null:
-			reset_to("login"))
+			reset_to(HOME))
 
 
 ## Called by main.tscn every time it loads (app start, or coming back from a game).
 func attach_host(host: Node) -> void:
 	_host = host
 	if _stack.is_empty():
-		reset_to("catalog" if Session.is_logged_in() else "login")
+		reset_to(HOME)
 	else:
 		_show(_stack.back())
 
 
-func go_to(screen: String) -> void:
-	_stack.push_back(screen)
-	_show(screen)
+func go_to(screen: String, params: Dictionary = {}) -> void:
+	_stack.push_back({ "screen": screen, "params": params })
+	_show(_stack.back())
 
 
-## Clears history, e.g. after login/logout so Back doesn't return to the old screen.
-func reset_to(screen: String) -> void:
-	_stack = [screen]
-	_show(screen)
+## Clears history (tab switch, login/logout) so Back doesn't return to the old screen.
+func reset_to(screen: String, params: Dictionary = {}) -> void:
+	_stack = [{ "screen": screen, "params": params }]
+	_show(_stack.back())
 
 
 ## Returns false when there is nothing to go back to (caller may quit the app).
@@ -47,6 +58,22 @@ func back() -> bool:
 	_stack.pop_back()
 	_show(_stack.back())
 	return true
+
+
+## The ONLY way screens start playing. `level_id` is set when playing a custom level.
+## Game bundled in res://games/<id> (GameRegistry) -> open it; otherwise -> placeholder screen.
+## When a mini game gets integrated, nothing in the screens needs to change.
+func play(game_id: String, level_id: String = "") -> void:
+	Settings.vibrate()
+	RecentService.new().add(game_id)
+
+	var game: Dictionary = GameRegistry.get_game(game_id)
+	if game.is_empty():
+		go_to("game_placeholder", { "game_id": game_id, "level_id": level_id })
+		return
+	var launch := game.duplicate()
+	launch["level_id"] = level_id
+	open_game(launch)
 
 
 func open_game(game: Dictionary) -> void:
@@ -72,8 +99,9 @@ func set_loading(visible: bool) -> void:
 		_host.set_loading(visible)
 
 
-func _show(screen: String) -> void:
-	_host.show_screen(load(SCREENS[screen]))
+func _show(entry: Dictionary) -> void:
+	var screen: String = entry["screen"]
+	_host.show_screen(screen, load(SCREENS[screen]), entry["params"])
 
 
 func _apply_orientation(orientation: String) -> void:

@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=4 format=3]
 
 [ext_resource type="Script" path="res://main.gd" id="1_main"]
 [ext_resource type="Script" path="res://common/ui/safe_area.gd" id="2_safe"]
+[ext_resource type="Script" path="res://common/ui/components/bottom_nav.gd" id="3_nav"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -19,7 +20,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.09, 0.1, 0.14, 1)
+color = Color(0.9607843, 0.9647059, 0.9843137, 1)
 
 [node name="SafeArea" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -30,9 +31,21 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_safe")
 
-[node name="ScreenHost" type="Control" parent="SafeArea"]
-unique_name_in_owner = true
+[node name="Layout" type="VBoxContainer" parent="SafeArea"]
 layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="ScreenHost" type="Control" parent="SafeArea/Layout"]
+unique_name_in_owner = true
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="BottomNav" type="PanelContainer" parent="SafeArea/Layout"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+script = ExtResource("3_nav")
 
 [node name="Loading" type="ColorRect" parent="."]
 unique_name_in_owner = true
@@ -45,7 +58,8 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.6)
 
-[node name="Label" type="Label" parent="Loading"]
+[node name="LoadingLabel" type="Label" parent="Loading"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -66,12 +80,12 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 40.0
-offset_top = -200.0
+offset_top = -260.0
 offset_right = -40.0
-offset_bottom = -120.0
+offset_bottom = -170.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_font_sizes/font_size = 28
+theme_override_font_sizes/font_size = 26
 text = "Toast"
 horizontal_alignment = 1
 vertical_alignment = 1

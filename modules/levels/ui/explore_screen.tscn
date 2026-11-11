@@ -1,0 +1,141 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://modules/levels/ui/explore_screen.gd" id="1_explore"]
+[ext_resource type="Script" path="res://common/ui/components/search_bar.gd" id="2_search"]
+[ext_resource type="Script" path="res://common/ui/components/empty_state.gd" id="3_empty"]
+[ext_resource type="Texture2D" path="res://common/ui/icons/play.svg" id="4_play"]
+
+[node name="ExploreScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_explore")
+
+[node name="Layout" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="Header" type="MarginContainer" parent="Layout"]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 16
+
+[node name="Column" type="VBoxContainer" parent="Layout/Header"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Title" type="Label" parent="Layout/Header/Column"]
+layout_mode = 2
+theme_type_variation = &"TitleLabel"
+text = "Explore"
+
+[node name="Subtitle" type="Label" parent="Layout/Header/Column"]
+layout_mode = 2
+theme_type_variation = &"MutedLabel"
+text = "Level do người chơi khác tạo và chia sẻ"
+autowrap_mode = 3
+
+[node name="Spacer" type="Control" parent="Layout/Header/Column"]
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+
+[node name="Search" type="LineEdit" parent="Layout/Header/Column"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "Tìm level, game hoặc người tạo"
+script = ExtResource("2_search")
+
+[node name="Scroll" type="ScrollContainer" parent="Layout"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="Margin" type="MarginContainer" parent="Layout/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="Content" type="VBoxContainer" parent="Layout/Scroll/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Count" type="Label" parent="Layout/Scroll/Margin/Content"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"MutedLabel"
+
+[node name="LevelList" type="VBoxContainer" parent="Layout/Scroll/Margin/Content"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Empty" type="VBoxContainer" parent="Layout/Scroll/Margin/Content"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(0, 420)
+layout_mode = 2
+script = ExtResource("3_empty")
+
+[node name="SelectedBar" type="PanelContainer" parent="Layout"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_type_variation = &"BottomBar"
+
+[node name="Margin" type="MarginContainer" parent="Layout/SelectedBar"]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 16
+
+[node name="Row" type="HBoxContainer" parent="Layout/SelectedBar/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Info" type="VBoxContainer" parent="Layout/SelectedBar/Margin/Row"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+
+[node name="SelectedName" type="Label" parent="Layout/SelectedBar/Margin/Row/Info"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"CardTitleLabel"
+text_overrun_behavior = 3
+
+[node name="SelectedMeta" type="Label" parent="Layout/SelectedBar/Margin/Row/Info"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"MutedLabel"
+text_overrun_behavior = 3
+
+[node name="SelectedDescription" type="Label" parent="Layout/SelectedBar/Margin/Row/Info"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+autowrap_mode = 3
+max_lines_visible = 2
+
+[node name="PlaySelected" type="Button" parent="Layout/SelectedBar/Margin/Row"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 88)
+layout_mode = 2
+size_flags_vertical = 4
+focus_mode = 0
+theme_type_variation = &"AccentButton"
+text = "Chơi level"
+icon = ExtResource("4_play")

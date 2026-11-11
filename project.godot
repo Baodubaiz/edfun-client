@@ -11,14 +11,16 @@ config_version=5
 [application]
 
 config/name="Edfun"
+config/version="0.1.0"
 run/main_scene="res://main.tscn"
+config/quit_on_go_back=false
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
-config/quit_on_go_back=false
 
 [autoload]
 
 Config="*res://common/config/config.gd"
+Settings="*res://common/settings/settings.gd"
 EdfunSdk="*res://addons/edfun_sdk/edfun_sdk.gd"
 Api="*res://common/api/api.gd"
 Session="*res://common/auth/session.gd"

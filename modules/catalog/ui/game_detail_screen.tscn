@@ -1,0 +1,114 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://modules/catalog/ui/game_detail_screen.gd" id="1_detail"]
+[ext_resource type="Texture2D" path="res://common/ui/icons/back.svg" id="2_back"]
+[ext_resource type="Texture2D" path="res://common/ui/icons/play.svg" id="3_play"]
+[ext_resource type="Script" path="res://common/ui/components/empty_state.gd" id="4_empty"]
+
+[node name="GameDetailScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_detail")
+
+[node name="Layout" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="TopBar" type="MarginContainer" parent="Layout"]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 8
+
+[node name="Row" type="HBoxContainer" parent="Layout/TopBar"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="BackButton" type="Button" parent="Layout/TopBar/Row"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 2
+focus_mode = 0
+theme_type_variation = &"IconButton"
+icon = ExtResource("2_back")
+icon_alignment = 1
+
+[node name="Title" type="Label" parent="Layout/TopBar/Row"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"SectionLabel"
+text = "Chi tiết game"
+
+[node name="Scroll" type="ScrollContainer" parent="Layout"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="Margin" type="MarginContainer" parent="Layout/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 24
+
+[node name="Content" type="VBoxContainer" parent="Layout/Scroll/Margin"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="GameName" type="Label" parent="Layout/Scroll/Margin/Content"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"TitleLabel"
+autowrap_mode = 3
+
+[node name="Tags" type="HBoxContainer" parent="Layout/Scroll/Margin/Content"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="AboutTitle" type="Label" parent="Layout/Scroll/Margin/Content"]
+layout_mode = 2
+theme_type_variation = &"SectionLabel"
+text = "Giới thiệu"
+
+[node name="Description" type="Label" parent="Layout/Scroll/Margin/Content"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.41960785, 0.4392157, 0.5019608, 1)
+autowrap_mode = 3
+
+[node name="NotFound" type="VBoxContainer" parent="Layout/Scroll/Margin"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(0, 600)
+layout_mode = 2
+script = ExtResource("4_empty")
+
+[node name="Footer" type="MarginContainer" parent="Layout"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="PlayButton" type="Button" parent="Layout/Footer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 96)
+layout_mode = 2
+focus_mode = 0
+theme_type_variation = &"AccentButton"
+theme_override_font_sizes/font_size = 30
+text = "Chơi ngay"
+icon = ExtResource("3_play")
