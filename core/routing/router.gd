@@ -6,18 +6,11 @@ extends Node
 
 const MAIN_SCENE := "res://main.tscn"
 const HOME := "home"
-const SCREENS := {
-	"login": "res://modules/auth/ui/login_screen.tscn",
-	"register": "res://modules/auth/ui/register_screen.tscn",
-	"home": "res://modules/catalog/ui/home_screen.tscn",
-	"game_detail": "res://modules/catalog/ui/game_detail_screen.tscn",
-	"explore": "res://modules/levels/ui/explore_screen.tscn",
-	"profile": "res://modules/users/ui/profile_screen.tscn",
-	"settings": "res://modules/settings/ui/settings_screen.tscn",
-	"game_placeholder": "res://modules/play/ui/game_placeholder_screen.tscn",
-}
+## Screen name -> scene path. Add entries as module screens are built, e.g.
+## "home": "res://modules/catalog/ui/home_screen.tscn"
+const SCREENS := {}
 ## Screens shown with the bottom tab bar.
-const TABS := ["home", "explore", "profile", "settings"]
+const TABS: Array[String] = []
 
 var current_game: Dictionary = {}
 
@@ -34,6 +27,8 @@ func _ready() -> void:
 ## Called by main.tscn every time it loads (app start, or coming back from a game).
 func attach_host(host: Node) -> void:
 	_host = host
+	if SCREENS.is_empty():
+		return
 	if _stack.is_empty():
 		reset_to(HOME)
 	else:
@@ -61,15 +56,14 @@ func back() -> bool:
 
 
 ## The ONLY way screens start playing. `level_id` is set when playing a custom level.
-## Game bundled in res://games/<id> (GameRegistry) -> open it; otherwise -> placeholder screen.
+## Game bundled in res://games/<id> (GameRegistry) -> open it; otherwise nothing happens yet.
 ## When a mini game gets integrated, nothing in the screens needs to change.
 func play(game_id: String, level_id: String = "") -> void:
 	Settings.vibrate()
-	RecentService.new().add(game_id)
 
 	var game: Dictionary = GameRegistry.get_game(game_id)
 	if game.is_empty():
-		go_to("game_placeholder", { "game_id": game_id, "level_id": level_id })
+		push_warning("Router: game '%s' is not bundled in res://games." % game_id)
 		return
 	var launch := game.duplicate()
 	launch["level_id"] = level_id
@@ -101,6 +95,9 @@ func set_loading(visible: bool) -> void:
 
 func _show(entry: Dictionary) -> void:
 	var screen: String = entry["screen"]
+	if not SCREENS.has(screen):
+		push_warning("Router: no scene registered for screen '%s'." % screen)
+		return
 	_host.show_screen(screen, load(SCREENS[screen]), entry["params"])
 
 

@@ -24,7 +24,7 @@ Settings="*res://core/autoload/settings.gd"
 EdfunSdk="*res://addons/edfun_sdk/edfun_sdk.gd"
 Api="*res://common/networking/api.gd"
 Session="*res://core/autoload/session.gd"
-GameRegistry="*res://core/games/game_registry.gd"
+GameRegistry="*res://core/autoload/game_registry.gd"
 Router="*res://core/routing/router.gd"
 
 [display]

@@ -1,7 +1,7 @@
 class_name ServiceResult
 extends RefCounted
 ## Shared result shape for services: { ok: bool, status: int, data: Variant, error: String }
-## (same as Api / AuthService), so screens handle mock and real data the same way.
+## (same as Api), so screens handle mock and real data the same way.
 
 
 static func ok(data: Variant) -> Dictionary:
