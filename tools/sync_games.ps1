@@ -10,10 +10,10 @@
 
 .EXAMPLE
   powershell -ExecutionPolicy Bypass -File tools/sync_games.ps1
-  powershell -ExecutionPolicy Bypass -File tools/sync_games.ps1 -GamesRoot D:\work\Edfun-Games
+  powershell -ExecutionPolicy Bypass -File tools/sync_games.ps1 -GamesRoot D:\work\edfun-games
 #>
 param(
-    [string]$GamesRoot = (Join-Path $PSScriptRoot "..\..\..\Edfun-Games")
+    [string]$GamesRoot = (Join-Path $PSScriptRoot "..\..\..\edfun-games")
 )
 
 $ErrorActionPreference = "Stop"
