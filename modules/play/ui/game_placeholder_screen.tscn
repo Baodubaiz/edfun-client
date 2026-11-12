@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3]
 
 [ext_resource type="Script" path="res://modules/play/ui/game_placeholder_screen.gd" id="1_placeholder"]
-[ext_resource type="Texture2D" path="res://common/ui/icons/back.svg" id="2_back"]
+[ext_resource type="Texture2D" path="res://assets/icons/back.svg" id="2_back"]
 
 [node name="GamePlaceholderScreen" type="Control"]
 layout_mode = 3

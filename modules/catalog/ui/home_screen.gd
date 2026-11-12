@@ -2,6 +2,7 @@ extends Control
 ## Home: search by name, filter by category, recently played and all games. Data: CatalogService.
 
 var _catalog := CatalogService.new()
+var _categories_service := CategoriesService.new()
 var _profiles := ProfileService.new()
 var _query := ""
 var _category_id := "" ## "" = all
@@ -37,7 +38,7 @@ func _load_greeting() -> void:
 
 
 func _load_categories() -> void:
-	var res: Dictionary = await _catalog.get_categories()
+	var res: Dictionary = await _categories_service.get_categories()
 	if not is_inside_tree() or not res.ok:
 		return
 	_add_chip("", "Tất cả")

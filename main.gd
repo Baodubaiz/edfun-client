@@ -1,7 +1,7 @@
 extends Control
 ## Root of the hub UI. Hosts the current screen, the bottom tab bar and global overlays (loading, toast).
 
-const HubBridge := preload("res://common/sdk/hub_bridge.gd")
+const HubBridge := preload("res://core/games/hub_bridge.gd")
 const TRANSITION_TIME := 0.2
 
 @onready var _screen_host: Control = %ScreenHost
@@ -16,10 +16,10 @@ func _ready() -> void:
 	theme = HubTheme.build()
 	_style_overlays()
 	_bottom_nav.setup([
-		{ "screen": "home", "label": "Trang chủ", "icon": preload("res://common/ui/icons/home.svg") },
-		{ "screen": "explore", "label": "Explore", "icon": preload("res://common/ui/icons/explore.svg") },
-		{ "screen": "profile", "label": "Hồ sơ", "icon": preload("res://common/ui/icons/profile.svg") },
-		{ "screen": "settings", "label": "Cài đặt", "icon": preload("res://common/ui/icons/settings.svg") },
+		{ "screen": "home", "label": "Trang chủ", "icon": preload("res://assets/icons/home.svg") },
+		{ "screen": "explore", "label": "Explore", "icon": preload("res://assets/icons/explore.svg") },
+		{ "screen": "profile", "label": "Hồ sơ", "icon": preload("res://assets/icons/profile.svg") },
+		{ "screen": "settings", "label": "Cài đặt", "icon": preload("res://assets/icons/settings.svg") },
 	])
 	_bottom_nav.tab_selected.connect(func(screen: String) -> void: Router.reset_to(screen))
 

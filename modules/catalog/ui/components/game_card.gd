@@ -3,7 +3,7 @@ extends Button
 ## Game tile: tap -> Game Detail, "Chơi" -> Router.play.
 ## `compact` = small vertical tile for horizontal rows (Recently Played).
 
-const PLAY_ICON := preload("res://common/ui/icons/play.svg")
+const PLAY_ICON := preload("res://assets/icons/play.svg")
 
 var game: Game
 

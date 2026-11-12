@@ -75,8 +75,8 @@ static func build() -> Theme:
 	t.set_color("clear_button_color_pressed", "LineEdit", HubColors.PRIMARY)
 
 	# Switches & sliders (Settings)
-	var on := load("res://common/ui/icons/switch_on.svg") as Texture2D
-	var off := load("res://common/ui/icons/switch_off.svg") as Texture2D
+	var on := load("res://assets/icons/switch_on.svg") as Texture2D
+	var off := load("res://assets/icons/switch_off.svg") as Texture2D
 	for icon in ["checked", "checked_mirrored", "checked_disabled", "checked_disabled_mirrored"]:
 		t.set_icon(icon, "CheckButton", on)
 	for icon in ["unchecked", "unchecked_mirrored", "unchecked_disabled", "unchecked_disabled_mirrored"]:
@@ -86,7 +86,7 @@ static func build() -> Theme:
 	for state in ["font_color", "font_hover_color", "font_pressed_color", "font_hover_pressed_color", "font_focus_color"]:
 		t.set_color(state, "CheckButton", HubColors.TEXT)
 
-	var grabber := load("res://common/ui/icons/grabber.svg") as Texture2D
+	var grabber := load("res://assets/icons/grabber.svg") as Texture2D
 	for icon in ["grabber", "grabber_highlight", "grabber_disabled"]:
 		t.set_icon(icon, "HSlider", grabber)
 	t.set_stylebox("slider", "HSlider", box(HubColors.BORDER, 6, Color.TRANSPARENT, 0, 4))

@@ -1,7 +1,7 @@
 extends Control
-## UI layer: reads inputs, shows results, navigates. Logic lives in UsersService.
+## UI layer: reads inputs, shows results, navigates. Logic lives in AuthService.
 
-var _users := UsersService.new()
+var _auth := AuthService.new()
 
 @onready var _login: LineEdit = %UserNameOrEmail
 @onready var _password: LineEdit = %Password
@@ -17,7 +17,7 @@ func _ready() -> void:
 
 func _on_submit() -> void:
 	_set_busy(true)
-	var res: Dictionary = await _users.login(_login.text, _password.text)
+	var res: Dictionary = await _auth.login(_login.text, _password.text)
 	_set_busy(false)
 
 	if not res.ok:

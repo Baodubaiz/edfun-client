@@ -1,13 +1,8 @@
 class_name CatalogService
 extends RefCounted
-## Data access for games & categories. Currently reads CatalogMock.
+## Data access for games. Currently reads CatalogMock; categories come from CategoriesService.
 ## To use the backend later, replace the method bodies with CatalogApi calls; the return shape
 ## ({ ok, error, data } via ServiceResult) stays the same, so screens don't change.
-
-
-func get_categories() -> Dictionary:
-	await ServiceResult.mock_delay()
-	return ServiceResult.ok(_categories())
 
 
 ## Search + filter. `query` matches the game name (case-insensitive); `category_id` "" = all.
@@ -47,16 +42,9 @@ func get_recent_games() -> Dictionary:
 	return ServiceResult.ok(result)
 
 
-func _categories() -> Array[GameCategory]:
-	var list: Array[GameCategory] = []
-	for data: Dictionary in CatalogMock.CATEGORIES:
-		list.append(GameCategory.from_dict(data))
-	return list
-
-
 func _games() -> Array[Game]:
 	var categories := {}
-	for category: GameCategory in _categories():
+	for category: GameCategory in CategoriesService.new().list():
 		categories[category.id] = category
 	var list: Array[Game] = []
 	for data: Dictionary in CatalogMock.GAMES:

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://df451vgsa3mxw"
-path="res://.godot/imported/switch_off.svg-3075fe9f374deb520fb6592500fde486.ctex"
+path="res://.godot/imported/switch_off.svg-a7c2b59653559fe2efdd8839ddda3346.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://common/ui/icons/switch_off.svg"
-dest_files=["res://.godot/imported/switch_off.svg-3075fe9f374deb520fb6592500fde486.ctex"]
+source_file="res://assets/icons/switch_off.svg"
+dest_files=["res://.godot/imported/switch_off.svg-a7c2b59653559fe2efdd8839ddda3346.ctex"]
 
 [params]
 

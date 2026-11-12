@@ -2,13 +2,7 @@ class_name CatalogMock
 extends RefCounted
 ## Mock data for CatalogService. Same shape a future /api/games endpoint should return.
 
-const CATEGORIES := [
-	{ "id": "arcade", "name": "Arcade", "color": "f25f5c" },
-	{ "id": "puzzle", "name": "Giải đố", "color": "6c4cf1" },
-	{ "id": "education", "name": "Học tập", "color": "22b07d" },
-	{ "id": "casual", "name": "Thư giãn", "color": "3a8dff" },
-]
-
+## `category_id` must match an id in CategoriesMock.CATEGORIES.
 const GAMES := [
 	{
 		"id": "tap_rush",

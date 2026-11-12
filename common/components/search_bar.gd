@@ -4,7 +4,7 @@ extends LineEdit
 
 signal search_changed(query: String)
 
-const ICON := preload("res://common/ui/icons/search.svg")
+const ICON := preload("res://assets/icons/search.svg")
 
 
 func _ready() -> void:

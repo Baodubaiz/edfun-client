@@ -19,13 +19,13 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Config="*res://common/config/config.gd"
-Settings="*res://common/settings/settings.gd"
+Config="*res://core/autoload/config.gd"
+Settings="*res://core/autoload/settings.gd"
 EdfunSdk="*res://addons/edfun_sdk/edfun_sdk.gd"
-Api="*res://common/api/api.gd"
-Session="*res://common/auth/session.gd"
-GameRegistry="*res://modules/catalog/services/game_registry.gd"
-Router="*res://common/navigation/router.gd"
+Api="*res://common/networking/api.gd"
+Session="*res://core/autoload/session.gd"
+GameRegistry="*res://core/games/game_registry.gd"
+Router="*res://core/routing/router.gd"
 
 [display]
 

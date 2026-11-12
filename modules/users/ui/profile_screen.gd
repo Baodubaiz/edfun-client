@@ -2,7 +2,7 @@ extends Control
 ## Profile: avatar, display name and basic info. Data: ProfileService (mock while not logged in).
 
 var _profiles := ProfileService.new()
-var _users := UsersService.new()
+var _auth := AuthService.new()
 
 @onready var _avatar: PanelContainer = %Avatar
 @onready var _avatar_label: Label = %AvatarLabel
@@ -18,7 +18,7 @@ var _users := UsersService.new()
 func _ready() -> void:
 	_avatar.add_theme_stylebox_override("panel", HubTheme.box(HubColors.PRIMARY, 999))
 	_avatar_label.add_theme_font_override("font", HubTheme.bold_font())
-	_logout.pressed.connect(_users.logout)
+	_logout.pressed.connect(_auth.logout)
 	_recent_count.text = str(RecentService.new().get_ids().size())
 
 	var res: Dictionary = await _profiles.get_profile()

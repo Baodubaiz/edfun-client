@@ -7,8 +7,8 @@ extends Node
 const MAIN_SCENE := "res://main.tscn"
 const HOME := "home"
 const SCREENS := {
-	"login": "res://modules/users/ui/login_screen.tscn",
-	"register": "res://modules/users/ui/register_screen.tscn",
+	"login": "res://modules/auth/ui/login_screen.tscn",
+	"register": "res://modules/auth/ui/register_screen.tscn",
 	"home": "res://modules/catalog/ui/home_screen.tscn",
 	"game_detail": "res://modules/catalog/ui/game_detail_screen.tscn",
 	"explore": "res://modules/levels/ui/explore_screen.tscn",

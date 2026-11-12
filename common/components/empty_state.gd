@@ -2,7 +2,7 @@ class_name EmptyState
 extends VBoxContainer
 ## Centered icon + title + message, for empty lists and "no results". Call show_message() to display.
 
-const DEFAULT_ICON := preload("res://common/ui/icons/empty.svg")
+const DEFAULT_ICON := preload("res://assets/icons/empty.svg")
 
 var _icon := TextureRect.new()
 var _title := Label.new()

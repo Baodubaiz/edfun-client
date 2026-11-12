@@ -2,7 +2,7 @@ class_name LevelCard
 extends Button
 ## Custom level row: level name, its game and its creator. Tap = select (toggle), "Chơi" = play it.
 
-const PLAY_ICON := preload("res://common/ui/icons/play.svg")
+const PLAY_ICON := preload("res://assets/icons/play.svg")
 
 var level: CustomLevel
 

@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3]
 
 [ext_resource type="Script" path="res://modules/levels/ui/explore_screen.gd" id="1_explore"]
-[ext_resource type="Script" path="res://common/ui/components/search_bar.gd" id="2_search"]
-[ext_resource type="Script" path="res://common/ui/components/empty_state.gd" id="3_empty"]
-[ext_resource type="Texture2D" path="res://common/ui/icons/play.svg" id="4_play"]
+[ext_resource type="Script" path="res://common/components/search_bar.gd" id="2_search"]
+[ext_resource type="Script" path="res://common/components/empty_state.gd" id="3_empty"]
+[ext_resource type="Texture2D" path="res://assets/icons/play.svg" id="4_play"]
 
 [node name="ExploreScreen" type="Control"]
 layout_mode = 3
